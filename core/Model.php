@@ -1,8 +1,8 @@
 <?php
 	namespace Core;
 
-use PDOException,
-	PDO;
+	use PDOException,
+		PDO;
 
 	class Model
 	{
