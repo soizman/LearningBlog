@@ -33,7 +33,7 @@
           </nav>
     </header>           
       <main>
-	  	<?= $content ?>        
+          <?= $content ?>        
       </main>    
     <footer>
         <div class="container">

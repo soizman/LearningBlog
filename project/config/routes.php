@@ -1,9 +1,9 @@
 <?php
-	use \Core\Route;
-	
-	return [
-		
-		new Route('/home/', 'page', 'home')
-		
-	];
-	
+    use \Core\Route;
+    
+    return [
+        
+        new Route('/home/', 'page', 'home')
+        
+    ];
+    
