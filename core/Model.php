@@ -1,29 +1,33 @@
 <?php
 	namespace Core;
-	
+
+use PDOException,
+	PDO;
+
 	class Model
 	{
-		private static $link;
+		private $link;
+		private $username = 'root';
+		private $password = 'root';		
 		
 		public function __construct()
 		{
-			if (!self::$link) {
-				self::$link = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-				mysqli_query(self::$link, "SET NAMES 'utf8'");
-			}
-		}
+			if(!$this->link){
+				try {
+					{
+						$this->link = new PDO("mysql:host=localhost;dbname=blog", $this->username, $this->password);					
+						$this->link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	
+					}		
+				} catch(PDOException $e) {
+					return "Ошибка подключения" . $e->getMessage();
+				}
+			}	
+		}	
 		
 		protected function findOne($query)
-		{
-			$result = mysqli_query(self::$link, $query) or die(mysqli_error(self::$link));
-			return mysqli_fetch_assoc($result);
-		}
-		
-		protected function findMany($query)
-		{
-			$result = mysqli_query(self::$link, $query) or die(mysqli_error(self::$link));
-			for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row);
+		{		
+			return $row = $this->link->query($query)->fetch(PDO::FETCH_ASSOC);			
+		}		
 			
-			return $data;
-		}
 	}
+	

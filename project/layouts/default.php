@@ -44,7 +44,7 @@
                 </div>
                 <div class="footer-right">
                     <span>Follow</span>
-                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://github.com/soizman"><i class="fa-brands fa-github"></i></a>
                     <a href="#"><i class="fa-brands fa-google"></i></a>
                 </div>
             </div>
