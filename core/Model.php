@@ -13,11 +13,9 @@ use PDOException,
 		public function __construct()
 		{
 			if(!$this->link){
-				try {
-					{
-						$this->link = new PDO("mysql:host=localhost;dbname=blog", $this->username, $this->password);					
-						$this->link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	
-					}		
+				try {					
+					$this->link = new PDO("mysql:host=localhost;dbname=blog", $this->username, $this->password);					
+					$this->link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);								
 				} catch(PDOException $e) {
 					return "Ошибка подключения" . $e->getMessage();
 				}
