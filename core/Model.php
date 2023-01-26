@@ -25,4 +25,10 @@
         {
             return $row = $this->link->query($query)->fetch(PDO::FETCH_ASSOC);            
         }
+
+        protected function insertTable($query)
+        {
+            $this->link->exec($query);
+        }
+       
     }

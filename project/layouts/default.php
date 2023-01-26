@@ -23,7 +23,7 @@
               <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                   <a class="nav-link" aria-current="page" href="/home/">Главная</a>
-                  <a class="nav-link" href="#">Статьи</a>
+                  <a class="nav-link" href="/articles/">Статьи</a>
                   <a class="nav-link" href="#">Работы</a>
                   <a class="nav-link" href="#">Обратная связь</a>                  
                 </div>
