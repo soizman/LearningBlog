@@ -1,0 +1,130 @@
+html,
+body {
+    height: 100%;    
+}
+
+.navbar-brand {
+    padding-left: 15%;
+}
+
+.wrapper {
+    min-height: 100%;        
+    background-color: aliceblue !important;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 1 auto;
+}
+
+main, h1 {
+    text-align: center;
+}
+
+footer {
+    background-color: #f0f0f0;
+    padding: 40px 0;
+    color: black;
+}
+
+.footer-left a {
+    color: black;
+    margin-right: 20px;
+
+}
+
+.footer-right a {
+    color: black;
+    margin-left: 20px;
+
+}
+
+/* Цитаты на главной */
+
+.blockquote-8 {
+    max-width: 100%;   
+    position: relative;
+    padding: 16px 24px;
+    margin: 16px 46px;    
+    font-size: 16px;
+    text-align: center;    
+}
+.blockquote-8:before,
+.blockquote-8:after {
+    position: absolute;
+    color: black;
+    font-size: 100px;
+    font-family: Times, sans-serif;    
+    line-height: 100px;    
+}
+.blockquote-8:before {
+    content: '“';
+    left: -30px;
+    top: -10px;
+}
+.blockquote-8:after {
+    content: '”';
+    right: -30px;
+    bottom: -10px;
+}
+.blockquote-8 cite {
+    color: black;
+    font-size: 15px;
+    padding-top: 10px;
+    display: block;
+}
+
+.blockquote-8 p, h2{
+    font-family: monospace;
+}
+
+.homeQuote {
+    margin:0 20% 0 20%;
+    background-color: rgb(243, 229, 232);
+    background-image: url(/project/webroot/img/homeQuoteBackground.jpg);
+}
+
+/* Конец цитаты на главной */
+
+/* Блок анотации на главной */
+
+.aboutBlog {
+    display: inline-block;
+    margin: 10% 0 5% 0;
+}
+
+.aboutBlog-right {
+    color: black;
+    display: inline-block;
+    width: 40%;
+    text-align: left;
+    text-indent: 3%;    
+         
+}
+
+.aboutBlog-Left {
+    color: black;
+    display: inline-block;
+    width: 40%;
+    text-align: left;
+    text-indent: 3%;   
+}
+
+@media screen and (max-width: 1200px) {
+    
+    .aboutBlog-right {              
+        width: 100%;
+    } 
+        
+    .aboutBlog-Left {               
+        width: 100%;
+               
+    }
+    .homeQuote {
+        width: 100%;
+        margin:0;
+    }
+}
+
+
