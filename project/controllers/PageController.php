@@ -18,8 +18,10 @@
 
         public function articles()
         {
+            $allArticles = (new Page)->getAllArticles();
+            //var_dump($allArticles[0]->id); die;   
             $this->title = 'Статьи';
-            return $this->render('articles/articlesPage', []);
+            return $this->render('articles/articlesPage', $allArticles);        
         }        
     }
 

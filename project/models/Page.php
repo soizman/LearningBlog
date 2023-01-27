@@ -6,18 +6,22 @@
     {
         public function getByIdHomePage($id)
         {
-            return $this->findOne("SELECT * FROM homepage WHERE id=$id");
+            return $this->getQuery("SELECT * FROM homepage WHERE id=$id");
         }
 
         public function getIdArticle()
         {
-            return $this->findOne("SELECT id FROM articles ORDER BY id DESC LIMIT 1");
+            return $this->getQuery("SELECT id FROM articles ORDER BY id DESC LIMIT 1");
         }
 
         public function insertIntoTable($titleArticle, $text)
-        {
-            //echo $text;die;            
-            $id = $this->lastId();
+        {                      
+            $id = $this->getLastId();
             $this->insertTable("INSERT INTO articles (id, titleArticle, text) VALUES ($id, '$titleArticle', '$text')");            
+        }
+
+        public function getAllArticles()
+        {
+            return $this->getQueryAll("SELECT * FROM articles");
         }
     }

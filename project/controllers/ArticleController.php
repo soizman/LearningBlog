@@ -4,7 +4,8 @@
         Project\Models\Page;
 
     class ArticleController extends Controller
-    {
+    {        
+        
         public function newArticle()
         {
             if($_REQUEST['submit'] && !empty($_REQUEST['titleArticle']) && !empty($_REQUEST['text'])) {                               
@@ -15,7 +16,7 @@
                 $this->title = 'Статьи';
                 return $this->render('articles/articlesPage', []);
             }
-        }
+        }        
     }
 
 
