@@ -21,6 +21,11 @@
             }
         }
 
+        protected function LastId()
+        {
+            return $this->link->lastInsertId();
+        }
+
         protected function findOne($query)
         {
             return $row = $this->link->query($query)->fetch(PDO::FETCH_ASSOC);            
