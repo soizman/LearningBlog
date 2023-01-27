@@ -1,6 +1,7 @@
 html,
 body {
-    height: 100%;    
+    height: 100%;   
+    
 }
 
 .navbar-brand {
@@ -9,7 +10,14 @@ body {
 
 .wrapper {
     min-height: 100%;        
-    background-color: aliceblue !important;
+    background-image: url(/project/webroot/img/background.jpg) !important;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
     display: flex;
     flex-direction: column;
 }

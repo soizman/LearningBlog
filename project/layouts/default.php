@@ -12,17 +12,17 @@
     <title><?= $title ?></title><!-- Указать title при переносе шаблона-->
 </head>
 <body>
-  <div class="wrapper" style="background-image: url(/project/webroot/img/background.jpg) ">
+  <div class="wrapper">
     <header>
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
             <div class="container-fluid">
-              <a class="navbar-brand" href="/home/"><i class="fa-solid fa-graduation-cap"></i>Learning blog</a>
+              <a class="navbar-brand" href="/"><i class="fa-solid fa-graduation-cap"></i>Learning blog</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Переключатель навигации">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                  <a class="nav-link" aria-current="page" href="/home/">Главная</a>
+                  <a class="nav-link" aria-current="page" href="/">Главная</a>
                   <a class="nav-link" href="/articles/">Статьи</a>
                   <a class="nav-link" href="#">Работы</a>
                   <a class="nav-link" href="#">Обратная связь</a>                  
