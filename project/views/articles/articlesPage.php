@@ -5,8 +5,8 @@
             <?php foreach ($data as $article):?>
                 <div class="shadow p-3 mb-5 bg-body rounded" style="--bs-bg-opacity: .5;"> 
                     <p class="articleName"><b><?= $article->titleArticle  ?></b></p>             
-                    <p><?= preg_match("/^(.{100,}?)\s+/s", $article->text, $m) ? $m[1] . '...' : $article->text;?></p>
-                    <p><?= $article->today ?></p>
+                    <p><?= preg_match("/^(.{150,}?)\s+/s", $article->text, $m) ? $m[1] . '...' : $article->text;?></p>
+                    <p id="datePost"><?= date("F j, Y, g:i a",strtotime($article->today)) ?></p>
                 </div>
             <?php endforeach ?>
             </div>
