@@ -21,8 +21,9 @@
             $this->insertTable("INSERT INTO articles (id, titleArticle, text, today) VALUES ($id, '$titleArticle', '$text', '$today')");            
         }
 
-        public function getAllArticles()
+        public function getAllArticles($from, $notesOnPage)
         {
-            return $this->getQueryAll("SELECT * FROM articles");
+            return $this->getQueryAll("SELECT * FROM articles LIMIT $from, $notesOnPage");
         }
+        
     }

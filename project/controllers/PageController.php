@@ -16,13 +16,22 @@
             ]);
         }
 
-        public function articles()
-        {
-            $allArticles = (new Page)->getAllArticles();
+        public function articles($num)
+        {   
+            if(!empty($num[0]))
+            {
+                $page = $num[0];
+            } else {
+                $page = 1;
+            }
+            
+            $notesOnPage = 3;
+            $from = ($page - 1) * $notesOnPage;
+           
+            
+            $allArticles = (new Page)->getAllArticles($from, $notesOnPage);
             $this->title = 'Статьи';
             return $this->render('articles/articlesPage', $allArticles);        
-        }        
+        }
     }
-
-
 ?>

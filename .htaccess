@@ -2,4 +2,13 @@ RewriteEngine On
 RewriteBase /
 
 RewriteCond %{REQUEST_URI} !^/project/webroot/
-RewriteRule .+ index.php
+RewriteRule ^(.*)$ index.php?rt=$1 [L,QSA]
+
+<files config.base.ini>
+  order deny,allow
+  deny from all
+</files>
+<files errorlogs.log>
+  order deny,allow
+  deny from all
+</files>

@@ -6,10 +6,10 @@
                 <div class="shadow p-3 mb-5 bg-body rounded" style="--bs-bg-opacity: .5;"> 
                     <p class="articleName"><b><?= $article->titleArticle  ?></b></p>             
                     <p><?= preg_match("/^(.{150,}?)\s+/s", $article->text, $m) ? $m[1] : $article->text;?></p>
-                    <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#ArticleModal<?=$article->id?>" style="text-align: left;"> <!--<?=$article->id?>-->
+                    <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#ArticleModal<?=$article->id?>" style="margin-top: 3%"> 
                         Читать далее...
                     </button>
-                    <p id="datePost"><?= date("F j, Y, g:i a",strtotime($article->today)) ?></p>                
+                    <p id="datePost"><i class="fa-solid fa-calendar-days"></i> <?= date("F j, Y, g:i a",strtotime($article->today)) ?></p>                
                  <!-- Модальное окно -->
                     <div class="modal fade" id="ArticleModal<?=$article->id?>" tabindex="-1" aria-labelledby="ArticleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl">
@@ -31,6 +31,17 @@
             <!-- Модальное окно -->
             <?php endforeach ?>           
             </div>
+            <nav aria-label="Навигация по страницам">
+            <ul class="pagination justify-content-end">
+                <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-left"></i></a></li>
+                <li class="page-item"><a class="page-link" href="/articles/1/">1</a></li>
+                <li class="page-item"><a class="page-link" href="/articles/2/">2</a></li>
+                <li class="page-item"><a class="page-link" href="/articles/3/">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#"><i class="fa-solid fa-chevron-right"></i></a>
+                </li>
+            </ul>
+            </nav>
         </div>
     </div>
     <h2>Предложить статью</h2>
