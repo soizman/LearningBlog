@@ -1,6 +1,6 @@
 <?php
     namespace Project\Models;
-    use \Core\Model;        
+    use \Core\Model;     
 
     class Page extends Model
     {
@@ -15,9 +15,10 @@
         }
 
         public function insertIntoTable($titleArticle, $text)
-        {                      
+        {
+            $today = date("Y-m-d H:i:s");
             $id = $this->getLastId();
-            $this->insertTable("INSERT INTO articles (id, titleArticle, text) VALUES ($id, '$titleArticle', '$text')");            
+            $this->insertTable("INSERT INTO articles (id, titleArticle, text, today) VALUES ($id, '$titleArticle', '$text', '$today')");            
         }
 
         public function getAllArticles()

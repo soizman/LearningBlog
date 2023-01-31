@@ -4,8 +4,9 @@
             <div class="com-md-8" style="padding: 5% 0 5% 0;">                
             <?php foreach ($data as $article):?>
                 <div class="shadow p-3 mb-5 bg-body rounded" style="--bs-bg-opacity: .5;"> 
-                    <p class="articleName"><b><?= $article->titleArticle ?></b></p>             
-                    <p><?= $article->text ?></p>
+                    <p class="articleName"><b><?= $article->titleArticle  ?></b></p>             
+                    <p><?= preg_match("/^(.{100,}?)\s+/s", $article->text, $m) ? $m[1] . '...' : $article->text;?></p>
+                    <p><?= $article->today ?></p>
                 </div>
             <?php endforeach ?>
             </div>
