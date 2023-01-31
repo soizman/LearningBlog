@@ -6,30 +6,30 @@
                 <div class="shadow p-3 mb-5 bg-body rounded" style="--bs-bg-opacity: .5;"> 
                     <p class="articleName"><b><?= $article->titleArticle  ?></b></p>             
                     <p><?= preg_match("/^(.{150,}?)\s+/s", $article->text, $m) ? $m[1] : $article->text;?></p>
-                    <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#ArticleModal" style="text-align: left;">
+                    <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#ArticleModal<?=$article->id?>" style="text-align: left;"> <!--<?=$article->id?>-->
                         Читать далее...
                     </button>
-                    <p id="datePost"><?= date("F j, Y, g:i a",strtotime($article->today)) ?></p>
-                </div>
-            <?php endforeach ?>
-            <!-- Модальное окно -->
-                <div class="modal fade" id="ArticleModal" tabindex="-1" aria-labelledby="ArticleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="ArticleModalLabel"><?= $article->titleArticle  ?></h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-                        </div>
-                        <div class="modal-body">
-                            <?= $article->text ?>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                            <button type="button" class="btn btn-primary">Сохранить изменения</button>
-                        </div>
+                    <p id="datePost"><?= date("F j, Y, g:i a",strtotime($article->today)) ?></p>                
+                 <!-- Модальное окно -->
+                    <div class="modal fade" id="ArticleModal<?=$article->id?>" tabindex="-1" aria-labelledby="ArticleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="ArticleModalLabel"><?= $article->titleArticle  ?></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                            </div>
+                                <div class="modal-body">
+                                    <?= $article->text ?>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>                           
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            <!-- Модальное окно -->
+            <?php endforeach ?>           
             </div>
         </div>
     </div>
