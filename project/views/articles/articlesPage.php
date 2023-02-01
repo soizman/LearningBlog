@@ -1,8 +1,9 @@
 <div class="artic">
     <div class="container">
         <div class="row">
-            <div class="com-md-8" style="padding: 5% 0 5% 0;">                
-            <?php foreach ($data as $article):?>
+            <div class="com-md-8" style="padding: 5% 0 5% 0;">  
+                
+            <?php foreach ($data["allArticles"] as $article):?>                 
                 <div class="shadow p-3 mb-5 bg-body rounded" style="--bs-bg-opacity: .5;"> 
                     <p class="articleName"><b><?= $article->titleArticle  ?></b></p>             
                     <p><?= preg_match("/^(.{150,}?)\s+/s", $article->text, $m) ? $m[1] : $article->text;?></p>
@@ -32,15 +33,13 @@
             <?php endforeach ?>           
             </div>
             <nav aria-label="Навигация по страницам">
-            <ul class="pagination justify-content-end">
-                <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-left"></i></a></li>
-                <li class="page-item"><a class="page-link" href="/articles/1/">1</a></li>
-                <li class="page-item"><a class="page-link" href="/articles/2/">2</a></li>
-                <li class="page-item"><a class="page-link" href="/articles/3/">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#"><i class="fa-solid fa-chevron-right"></i></a>
-                </li>
-            </ul>
+                <ul class="pagination justify-content-end">
+                    <li class="page-item"><a class="page-link" href="/articles/1/"><i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-left"></i></a></li> 
+                    <?php for($i=1; $i <= $pagesCount; $i++): ?>               
+                    <li class="page-item"><a class="page-link" href="/articles/<?= $i ?>/"><?= $i ?></a></li>                    
+                    <?php endfor;?>
+                    <li class="page-item"><a class="page-link" href="/articles/<?= $pagesCount ?>/"><i class="fa-solid fa-chevron-right"></i><i class="fa-solid fa-chevron-right"></i></a></li>
+                </ul>
             </nav>
         </div>
     </div>

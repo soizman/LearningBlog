@@ -48,7 +48,7 @@ class Model
     protected function insertTable($query)
     {
         $this->link->exec($query);
-    }
+    }    
     
     
 }

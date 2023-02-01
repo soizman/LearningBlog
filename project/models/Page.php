@@ -25,5 +25,10 @@
         {
             return $this->getQueryAll("SELECT * FROM articles LIMIT $from, $notesOnPage");
         }
+
+        public function countEntryTable()
+        {
+            return $this->getQuery("SELECT count(*) as count FROM articles");
+        }
         
     }
