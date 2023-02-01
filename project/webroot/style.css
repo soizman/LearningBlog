@@ -68,8 +68,7 @@ footer {
     position: relative;
     padding: 16px 24px;
     margin: 16px 46px;    
-    font-size: 16px;
-    text-align: center;    
+    font-size: 16px;       
 }
 .blockquote-8:before,
 .blockquote-8:after {
@@ -98,6 +97,11 @@ footer {
 
 .blockquote-8 p, h2{
     font-family: monospace;
+    text-align: center !important;     
+}
+
+.blockquote-8 p {
+    font-size: 16px;  
 }
 
 .homeQuote {
