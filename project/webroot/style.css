@@ -174,7 +174,12 @@ input.button-send {
         width: 100%;
         margin:0;
     }
+
+    div.btnAuth {
+        padding-left: 0%!important;
+    }
 }
+
 
 
 

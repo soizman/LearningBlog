@@ -26,13 +26,13 @@
                   <a class="nav-link" href="#">Обратная связь</a>                  
                 </div>
 
-                <div class="btn-group" style="padding-left: 10%; color: aliceblue;">
+                <div class="btn-group btnAuth" style="padding-left: 10%;">
                     <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-user"></i>
                     </button>
-                    <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Выпадающая ссылка</a></li>
-                    <li><a class="dropdown-item" href="#">Выпадающая ссылка</a></li>
+                    <ul class="dropdown-menu bg-dark" style="margin-left: 50%;">
+                    <li><a class="dropdown-item bg-dark text-light" href="#">Вход</a></li>
+                    <li><a class="dropdown-item bg-dark text-light" href="#">Регистрация</a></li>
                     </ul>
                 </div>               
               </div>
