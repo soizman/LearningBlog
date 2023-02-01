@@ -34,11 +34,11 @@
             </div>
             <nav aria-label="Навигация по страницам">
                 <ul class="pagination justify-content-end">
-                    <li class="page-item"><a class="page-link" href="/articles/1/"><i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-left"></i></a></li> 
+                    <li class="page-item"><a class="page-link" href="/articles/1/"><i class="fa-solid fa-chevron-left"></i></a></li> 
                     <?php for($i=1; $i <= $pagesCount; $i++): ?>               
                     <li class="page-item"><a class="page-link" href="/articles/<?= $i ?>/"><?= $i ?></a></li>                    
                     <?php endfor;?>
-                    <li class="page-item"><a class="page-link" href="/articles/<?= $pagesCount ?>/"><i class="fa-solid fa-chevron-right"></i><i class="fa-solid fa-chevron-right"></i></a></li>
+                    <li class="page-item"><a class="page-link" href="/articles/<?= $pagesCount ?>/"><i class="fa-solid fa-chevron-right"></i></a></li>
                 </ul>
             </nav>
         </div>
