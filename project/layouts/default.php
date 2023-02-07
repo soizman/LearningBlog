@@ -31,8 +31,8 @@
                         <i class="fa-solid fa-user"></i>
                     </button>
                     <ul class="dropdown-menu bg-dark" style="margin-left: 50%;">
-                    <li><a class="dropdown-item bg-dark text-light" href="#">Вход</a></li>
-                    <li><a class="dropdown-item bg-dark text-light" href="#">Регистрация</a></li>
+                    <li><a class="dropdown-item bg-dark text-light" href="/login/">Вход</a></li>
+                    <li><a class="dropdown-item bg-dark text-light" href="/registration/">Регистрация</a></li>
                     </ul>
                 </div>               
               </div>
