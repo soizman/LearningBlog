@@ -1,6 +1,7 @@
 html,
 body {
     height: 100%;   
+    font-family: Verdana, Geneva, Tahoma, sans-serif
     
 }
 
@@ -38,7 +39,7 @@ footer {
 
 .artic, h4 , p {
     text-align: left;
-    font-family: Verdana, Geneva, Tahoma, sans-serif
+    
 }
 
 .artic, p {
@@ -159,6 +160,34 @@ input.button-send {
     background-color: black;
     color: azure;
 }
+/*-----------*/
+
+/* страница авторизации*/
+
+div.auth{
+    height: 100vh;
+    font-family: monospace;  
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+
+div.auth form {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    outline: none;    
+}
+
+div.auth p {
+    padding: 2%;
+    text-align: center;
+}
+
+.form-check-label {
+    float: left;
+}
+/*-------------*/
 
 @media screen and (max-width: 1200px) {
     
