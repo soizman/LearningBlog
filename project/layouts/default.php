@@ -32,9 +32,9 @@
                         <i class="fa-solid fa-user"></i>
                     </button>
                     <ul class="dropdown-menu bg-dark" style="margin-left: 50%;">
-                      <?php session_start(); if(!empty($_SESSION['user'])):?>
-                        <li><a class="dropdown-item bg-dark text-light" href="#"><?= $_SESSION['user']['fullname'];?></a></li>
-                        <li><a class="dropdown-item bg-dark text-light" href="#">Выход</a></li>
+                      <?php if(!empty($_SESSION['user'])):?>
+                        <li><a class="dropdown-item bg-dark text-light" href="/profile/">Профиль</a></li>
+                        <li><a class="dropdown-item bg-dark text-light" href="/exit/">Выход</a></li>
                       <?php else:?>
                         <li><a class="dropdown-item bg-dark text-light" href="/login/">Вход</a></li>
                         <li><a class="dropdown-item bg-dark text-light" href="/registration/">Регистрация</a></li>

@@ -1,6 +1,5 @@
 <?php
-    namespace Core;
-
+    namespace Core;    
     class Page
     {
         private $layout;

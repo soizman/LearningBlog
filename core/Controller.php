@@ -2,6 +2,8 @@
 
 namespace Core;
 
+session_start();
+
 class Controller
 {
     protected $layout = 'default';

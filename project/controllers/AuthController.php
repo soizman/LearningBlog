@@ -1,19 +1,20 @@
 <?php
     namespace Project\Controllers;
     use Core\Controller,
-        Project\Models\Auth;
+        Project\Models\Auth;   
     
-    session_start();
-
+    
     class AuthController extends Controller
     {
+        private $nameImage;
+
         public function login()
         {   
             if(isset($_POST['submitLogin']) && isset($_POST['emailLogin']) && isset($_POST['passwordLogin'])) {
                 
-                $hash = (new Auth) -> getPasswordHash($_POST['emailLogin']);
+                $hash = (new Auth)->getPasswordHash($_POST['emailLogin']);
 
-                if(password_verify($_POST['passwordLogin'], $hash['password'])==true){
+                if(password_verify($_POST['passwordLogin'], $hash['password'])==true) {
 
                     $user = (new Auth)->signIn($_POST['emailLogin']);  
                     
@@ -26,7 +27,7 @@
 
                     ];
 
-                    header("Location: /");
+                    header("Location: /profile/");
                 } else {
                     $_SESSION['msg'] = 'Неверный логин или пароль';
                 }
@@ -36,10 +37,10 @@
 
         public function uploadImage($img) 
         {
-            $name = md5(uniqid()) . $img['name'];
+            $this->nameImage = md5(uniqid()) . $img['name'];
             $tmpName = $img['tmp_name'];
             
-            return move_uploaded_file($tmpName, 'project/uploads/' . $name);
+            return move_uploaded_file($tmpName, 'project/webroot/img/uploads/' . $this->nameImage);
         }
 
         public function registration()
@@ -54,17 +55,34 @@
                         $_SESSION['msg'] = 'Изображение не загружено';
                     }
 
-                    $newUser = (new Auth)->signUp($_POST['name'], $_POST['email'], password_hash($password, PASSWORD_DEFAULT));
+                    $newUser = (new Auth)->signUp($_POST['name'], $_POST['email'], password_hash($password, PASSWORD_DEFAULT), $this->nameImage);
                     $_SESSION['msg'] = 'Вы успешно зарегистрировались!' . '<br>' . 'Перейдите на страницу ' . '<a href="/login/">авторизации</a>';
                                         
                 } else {
-                    $_SESSION['msg'] = 'Пароли не совпадают';                    
+                    $_SESSION['msg'] = 'Пароли не совпадают';          
                 }
 
             }           
 
             return $this->render('auth/registPage');           
             
+        }
+
+        public function exit()
+        {
+            unset($_SESSION['user']);
+            return $this->render('auth/loginPage');
+        }
+
+        public function getProfilePage()
+        {
+            $profile = (new Auth)->getProfile($_SESSION['user']['id']);
+            
+            return $this->render('profile/profilePage', [
+                'fullName' => $profile['fullName'],
+                'email'    => $profile['email'],
+                'avatar'   => $profile['avatar']
+            ]);
         }
     }
 ?>  
