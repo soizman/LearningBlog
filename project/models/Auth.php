@@ -24,4 +24,9 @@ class Auth extends Model
     {
         return $this->getQuery("SELECT * FROM users where id='$id'");
     }
+
+    public function getAllUsers()
+    {
+        return $this->getQueryAll("SELECT * FROM users");
+    }
 }

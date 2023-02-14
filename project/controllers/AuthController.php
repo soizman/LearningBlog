@@ -20,10 +20,10 @@
                     
                     $_SESSION['user'] = [
 
-                        'id' => $user['id'],
+                        'id'       => $user['id'],
                         'fullname' => $user['fullName'],
-                        'email' => $user['email'],
-                        'avatar' => $user['avatar']
+                        'email'    => $user['email'],
+                        'avatar'   => $user['avatar']
 
                     ];
 
@@ -35,7 +35,7 @@
             return $this->render('auth/loginPage');
         }
 
-        public function uploadImage($img) 
+        protected function uploadImage($img) 
         {
             $this->nameImage = md5(uniqid()) . $img['name'];
             $tmpName = $img['tmp_name'];
@@ -45,21 +45,48 @@
 
         public function registration()
         {
-            if(isset($_POST['submit'])) {
+            if(isset($_POST['submit']) && !empty($_POST['name']) && !empty($_POST['email'])) {
 
                 $password = $_POST['password'];
                 $passwordConfirm = $_POST['passwordConfirm'];                
 
-                if($password === $passwordConfirm) {
-                    if(!$this->uploadImage($_FILES['avatar'])) {
-                        $_SESSION['msg'] = 'Изображение не загружено';
-                    }
+                if (strlen($password) >= 6 && strlen($passwordConfirm) >= 6) {
+                    if($password === $passwordConfirm) {
 
-                    $newUser = (new Auth)->signUp($_POST['name'], $_POST['email'], password_hash($password, PASSWORD_DEFAULT), $this->nameImage);
-                    $_SESSION['msg'] = 'Вы успешно зарегистрировались!' . '<br>' . 'Перейдите на страницу ' . '<a href="/login/">авторизации</a>';
-                                        
+                        if(!$this->uploadImage($_FILES['avatar'])) {
+
+                            $_SESSION['msg'] = 'Изображение не загружено';
+                            $this->nameImage = '';
+                        }                       
+
+                        if (!$this->validationMail($_POST['email'])) {
+
+                            
+
+                            $newUser = (new Auth)->signUp($_POST['name'], $_POST['email'], password_hash($password, PASSWORD_DEFAULT), $this->nameImage);
+
+                            $user = (new Auth)->signIn($_POST['email']);  
+                            
+                            $_SESSION['user'] = [
+
+                                'id'       => $user['id'],
+                                'fullname' => $user['fullName'],
+                                'email'    => $user['email'],
+                                'avatar'   => $user['avatar']
+
+                        ];
+
+                            header("Location: /");
+
+                        } else {
+                            $_SESSION['msg'] = 'Данный e-mail уже зарегистрирован';
+                        }
+                                            
+                    } else {
+                        $_SESSION['msg'] = 'Пароли не совпадают';          
+                    }
                 } else {
-                    $_SESSION['msg'] = 'Пароли не совпадают';          
+                    $_SESSION['msg'] = 'Длинна пароля должна быть более 6 символов';
                 }
 
             }           
@@ -67,6 +94,19 @@
             return $this->render('auth/registPage');           
             
         }
+
+        protected function validationMail($email)
+        {
+            $currentUsers = (new Auth)->getAllUsers();
+            foreach($currentUsers as $currentUser) {
+                
+                if($currentUser->email === $email) {
+
+                    return true;
+
+                } 
+            }
+        } 
 
         public function exit()
         {
