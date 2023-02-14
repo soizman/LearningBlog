@@ -10,6 +10,7 @@
 
         public function login()
         {   
+            $this->title = 'Вход';
             if(isset($_POST['submitLogin']) && isset($_POST['emailLogin']) && isset($_POST['passwordLogin'])) {
                 
                 $hash = (new Auth)->getPasswordHash($_POST['emailLogin']);
@@ -45,6 +46,7 @@
 
         public function registration()
         {
+            $this->title = 'Регистрация';
             if(isset($_POST['submit']) && !empty($_POST['name']) && !empty($_POST['email'])) {
 
                 $password = $_POST['password'];
@@ -110,12 +112,14 @@
 
         public function exit()
         {
+            $this->title = 'Выход';
             unset($_SESSION['user']);
             return $this->render('auth/loginPage');
         }
 
         public function getProfilePage()
         {
+            $this->title = 'Профиль';
             $profile = (new Auth)->getProfile($_SESSION['user']['id']);
             
             return $this->render('profile/profilePage', [
