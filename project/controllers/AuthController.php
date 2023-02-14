@@ -8,7 +8,29 @@
     class AuthController extends Controller
     {
         public function login()
-        {            
+        {   
+            if(isset($_POST['submitLogin']) && isset($_POST['emailLogin']) && isset($_POST['passwordLogin'])) {
+                
+                $hash = (new Auth) -> getPasswordHash($_POST['emailLogin']);
+
+                if(password_verify($_POST['passwordLogin'], $hash['password'])==true){
+
+                    $user = (new Auth)->signIn($_POST['emailLogin']);  
+                    
+                    $_SESSION['user'] = [
+
+                        'id' => $user['id'],
+                        'fullname' => $user['fullName'],
+                        'email' => $user['email'],
+                        'avatar' => $user['avatar']
+
+                    ];
+
+                    header("Location: /");
+                } else {
+                    $_SESSION['msg'] = 'Неверный логин или пароль';
+                }
+            }
             return $this->render('auth/loginPage');
         }
 
@@ -33,9 +55,8 @@
                     }
 
                     $newUser = (new Auth)->signUp($_POST['name'], $_POST['email'], password_hash($password, PASSWORD_DEFAULT));
-                    $_SESSION['msg'] = 'Вы успешно зарегистрировались!';
-                    header('Location: /login/');
-                    
+                    $_SESSION['msg'] = 'Вы успешно зарегистрировались!' . '<br>' . 'Перейдите на страницу ' . '<a href="/login/">авторизации</a>';
+                                        
                 } else {
                     $_SESSION['msg'] = 'Пароли не совпадают';                    
                 }

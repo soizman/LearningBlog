@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,12 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://kit.fontawesome.com/e9b54647e9.css" crossorigin="anonymous">  
-    <title><?= $title ?></title><!-- Указать title при переносе шаблона-->
+    <title><?= $title ?></title>
 </head>
 <body>
   <div class="wrapper">
     <header>
-        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">        
             <div class="container-fluid">
               <a class="navbar-brand" href="/"><i class="fa-solid fa-graduation-cap"></i>Learning blog</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Переключатель навигации">
@@ -31,8 +32,13 @@
                         <i class="fa-solid fa-user"></i>
                     </button>
                     <ul class="dropdown-menu bg-dark" style="margin-left: 50%;">
-                    <li><a class="dropdown-item bg-dark text-light" href="/login/">Вход</a></li>
-                    <li><a class="dropdown-item bg-dark text-light" href="/registration/">Регистрация</a></li>
+                      <?php session_start(); if(!empty($_SESSION['user'])):?>
+                        <li><a class="dropdown-item bg-dark text-light" href="#"><?= $_SESSION['user']['fullname'];?></a></li>
+                        <li><a class="dropdown-item bg-dark text-light" href="#">Выход</a></li>
+                      <?php else:?>
+                        <li><a class="dropdown-item bg-dark text-light" href="/login/">Вход</a></li>
+                        <li><a class="dropdown-item bg-dark text-light" href="/registration/">Регистрация</a></li>
+                      <?php endif;?>
                     </ul>
                 </div>               
               </div>
