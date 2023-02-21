@@ -10,30 +10,34 @@
 
         public function login()
         {   
-            $this->title = 'Вход';
-            if(isset($_POST['submitLogin']) && isset($_POST['emailLogin']) && isset($_POST['passwordLogin'])) {
-                
-                $hash = (new Auth)->getPasswordHash($_POST['emailLogin']);
-
-                if(password_verify($_POST['passwordLogin'], $hash['password'])==true) {
-
-                    $user = (new Auth)->signIn($_POST['emailLogin']);  
+            if(!isset($_SESSION['user'])) {
+                $this->title = 'Вход';
+                if(isset($_POST['submitLogin']) && isset($_POST['emailLogin']) && isset($_POST['passwordLogin'])) {
                     
-                    $_SESSION['user'] = [
+                    $hash = (new Auth)->getPasswordHash($_POST['emailLogin']);
 
-                        'id'       => $user['id'],
-                        'fullname' => $user['fullName'],
-                        'email'    => $user['email'],
-                        'avatar'   => $user['avatar']
+                    if(password_verify($_POST['passwordLogin'], $hash['password'])==true) {
 
-                    ];
+                        $user = (new Auth)->signIn($_POST['emailLogin']);  
+                        
+                        $_SESSION['user'] = [
 
-                    header("Location: /profile/");
-                } else {
-                    $_SESSION['msg'] = 'Неверный логин или пароль';
+                            'id'       => $user['id'],
+                            'fullname' => $user['fullName'],
+                            'email'    => $user['email'],
+                            'avatar'   => $user['avatar']
+
+                        ];
+
+                        header("Location: /");
+                    } else {
+                        $_SESSION['msg'] = 'Неверный логин или пароль';
+                    }
                 }
+                return $this->render('auth/loginPage');
+            } else {
+                header("Location: /");
             }
-            return $this->render('auth/loginPage');
         }
 
         protected function uploadImage($img) 
@@ -46,52 +50,56 @@
 
         public function registration()
         {
-            $this->title = 'Регистрация';
-            if(isset($_POST['submit']) && !empty($_POST['name']) && !empty($_POST['email'])) {
+            if(!isset($_SESSION['user'])) {
+                $this->title = 'Регистрация';
+                if(isset($_POST['submit']) && !empty($_POST['name']) && !empty($_POST['email'])) {
 
-                $password = $_POST['password'];
-                $passwordConfirm = $_POST['passwordConfirm'];                
+                    $password = $_POST['password'];
+                    $passwordConfirm = $_POST['passwordConfirm'];                
 
-                if (strlen($password) >= 6 && strlen($passwordConfirm) >= 6) {
-                    if($password === $passwordConfirm) {
+                    if (strlen($password) >= 6 && strlen($passwordConfirm) >= 6) {
+                        if($password === $passwordConfirm) {
 
-                        if(!$this->uploadImage($_FILES['avatar'])) {
+                            if(!$this->uploadImage($_FILES['avatar'])) {
 
-                            $_SESSION['msg'] = 'Изображение не загружено';
-                            $this->nameImage = '';
-                        }                       
+                                $_SESSION['msg'] = 'Изображение не загружено';
+                                $this->nameImage = '';
+                            }                       
 
-                        if (!$this->validationMail($_POST['email'])) {
+                            if (!$this->validationMail($_POST['email'])) {
 
-                            
+                                
 
-                            $newUser = (new Auth)->signUp($_POST['name'], $_POST['email'], password_hash($password, PASSWORD_DEFAULT), $this->nameImage);
+                                $newUser = (new Auth)->signUp($_POST['name'], $_POST['email'], password_hash($password, PASSWORD_DEFAULT), $this->nameImage);
 
-                            $user = (new Auth)->signIn($_POST['email']);  
-                            
-                            $_SESSION['user'] = [
+                                $user = (new Auth)->signIn($_POST['email']);  
+                                
+                                $_SESSION['user'] = [
 
-                                'id'       => $user['id'],
-                                'fullname' => $user['fullName'],
-                                'email'    => $user['email'],
-                                'avatar'   => $user['avatar']
+                                    'id'       => $user['id'],
+                                    'fullname' => $user['fullName'],
+                                    'email'    => $user['email'],
+                                    'avatar'   => $user['avatar']
 
-                        ];
+                            ];
 
-                            header("Location: /");
+                                header("Location: /");
 
+                            } else {
+                                $_SESSION['msg'] = 'Данный e-mail уже зарегистрирован';
+                            }
+                                                
                         } else {
-                            $_SESSION['msg'] = 'Данный e-mail уже зарегистрирован';
+                            $_SESSION['msg'] = 'Пароли не совпадают';          
                         }
-                                            
                     } else {
-                        $_SESSION['msg'] = 'Пароли не совпадают';          
+                        $_SESSION['msg'] = 'Длинна пароля должна быть более 6 символов';
                     }
-                } else {
-                    $_SESSION['msg'] = 'Длинна пароля должна быть более 6 символов';
-                }
 
-            }           
+                }     
+            } else  {
+                header("Location: /");
+            }
 
             return $this->render('auth/registPage');           
             
@@ -114,19 +122,24 @@
         {
             $this->title = 'Выход';
             unset($_SESSION['user']);
-            return $this->render('auth/loginPage');
+            header("Location: /");
+
+            return $this->render('auth/loginPage');            
         }
 
         public function getProfilePage()
         {
-            $this->title = 'Профиль';
-            $profile = (new Auth)->getProfile($_SESSION['user']['id']);
-            
-            return $this->render('profile/profilePage', [
-                'fullName' => $profile['fullName'],
-                'email'    => $profile['email'],
-                'avatar'   => $profile['avatar']
-            ]);
+            if(isset($_SESSION['user'])) {
+                $this->title = 'Профиль';
+                $profile = (new Auth)->getProfile($_SESSION['user']['id']);
+                
+                return $this->render('profile/profilePage', [
+                    'fullName' => $profile['fullName'],
+                    'email'    => $profile['email'],
+                    'avatar'   => $profile['avatar']
+                ]);
+            } else {
+                header("Location: /");
+            }
         }
     }
-?>  

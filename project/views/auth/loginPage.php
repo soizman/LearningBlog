@@ -9,7 +9,7 @@
             <input type="password" class="form-control" id="InputPassword1" name="passwordLogin" placeholder="Введите пароль">
         </div>
         <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="Check" name="check">
+            <input type="checkbox" class="form-check-input" id="Check" name="rememberMe">
             <label class="form-check-label" for="Check">Запомнить меня</label>
         </div>
         <button type="submit" class="btn btn-dark" name="submitLogin">Отправить</button><br>
