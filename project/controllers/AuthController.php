@@ -13,6 +13,8 @@
             if(!isset($_SESSION['user'])) {
                 $this->title = 'Вход';
                 if(isset($_POST['submitLogin']) && isset($_POST['emailLogin']) && isset($_POST['passwordLogin'])) {
+
+                    
                     
                     $hash = (new Auth)->getPasswordHash($_POST['emailLogin']);
 
@@ -22,12 +24,18 @@
                         
                         $_SESSION['user'] = [
 
-                            'id'       => $user['id'],
-                            'fullname' => $user['fullName'],
-                            'email'    => $user['email'],
-                            'avatar'   => $user['avatar']
+                            'id'           => $user['id'],
+                            'fullname'     => $user['fullName'],
+                            'email'        => $user['email'],
+                            'avatar'       => $user['avatar'],
+                            'dateRegister' => $user['dateRegister'],
+                            'dateVisit'    => $user['dateVisit']
 
                         ];
+
+                        $today = date("Y-m-d H:i:s");
+                    
+                        $dayVisit = (new Auth)->setDateVisit($today, $_SESSION['user']['id']);
 
                         header("Location: /");
                     } else {
@@ -70,16 +78,18 @@
 
                                 
 
-                                $newUser = (new Auth)->signUp($_POST['name'], $_POST['email'], password_hash($password, PASSWORD_DEFAULT), $this->nameImage);
+                                $newUser = (new Auth)->signUp($_POST['name'], $_POST['email'], password_hash($password, PASSWORD_DEFAULT), $this->nameImage, date("Y-m-d H:i:s"));
 
                                 $user = (new Auth)->signIn($_POST['email']);  
                                 
                                 $_SESSION['user'] = [
 
-                                    'id'       => $user['id'],
-                                    'fullname' => $user['fullName'],
-                                    'email'    => $user['email'],
-                                    'avatar'   => $user['avatar']
+                                    'id'           => $user['id'],
+                                    'fullname'     => $user['fullName'],
+                                    'email'        => $user['email'],
+                                    'avatar'       => $user['avatar'],
+                                    'dateRegister' => $user['dateRegister'],
+                                    'dateVisit'    => $user['dateVisit']
 
                             ];
 

@@ -17,8 +17,8 @@
                 <p class="hprof">Профиль</p>                
                 <p>Имя пользвоателя: <label style="font-weight: bolder;"><?= $fullName ?></label></p> 
                 <p>E-mail: <label style="font-weight: bolder;"><?= $email ?></label></p>
-                <p>Дата последнего визита: <label style="font-weight: bolder;"></label></p>
-                <p>Дата регистрации: <label style="font-weight: bolder;"></label></p>
+                <p>Дата последнего визита: <label style="font-weight: bolder;"><?= date("F j, Y", strtotime($dateVisit))?></label></p>
+                <p>Дата регистрации: <label style="font-weight: bolder;"><?= date("F j, Y", strtotime($dateRegister))?></label></p>
                 <a href="/exit/" class="exit">Выход</a>             
                 
         </div>

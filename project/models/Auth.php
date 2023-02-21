@@ -4,10 +4,10 @@
 
 class Auth extends Model
 {
-    public function signUp($username, $email, $password, $avatar)    
+    public function signUp($username, $email, $password, $avatar, $dateRegister)    
     {
         
-        return $this->insertTable("INSERT INTO users (fullName, email, password, avatar) VALUES ('$username', '$email', '$password', '$avatar')");
+        return $this->insertTable("INSERT INTO users (fullName, email, password, avatar, dateRegister) VALUES ('$username', '$email', '$password', '$avatar', '$dateRegister')");
     }
 
     public function signIn($email)
@@ -28,5 +28,10 @@ class Auth extends Model
     public function getAllUsers()
     {
         return $this->getQueryAll("SELECT * FROM users");
+    }
+
+    public function setDateVisit($dateVisit, $id)
+    {
+        return $this->insertTable(" UPDATE `users` SET `dateVisit` = '$dateVisit' WHERE id = '$id' ");
     }
 }
