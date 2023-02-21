@@ -127,19 +127,4 @@
             return $this->render('auth/loginPage');            
         }
 
-        public function getProfilePage()
-        {
-            if(isset($_SESSION['user'])) {
-                $this->title = 'Профиль';
-                $profile = (new Auth)->getProfile($_SESSION['user']['id']);
-                
-                return $this->render('profile/profilePage', [
-                    'fullName' => $profile['fullName'],
-                    'email'    => $profile['email'],
-                    'avatar'   => $profile['avatar']
-                ]);
-            } else {
-                header("Location: /");
-            }
-        }
     }

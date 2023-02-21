@@ -9,6 +9,7 @@
         new Route('/login/', 'auth', 'login'),
         new Route('/registration/', 'auth', 'registration'),
         new Route('/exit/', 'auth', 'exit'),
-        new Route('/profile/', 'auth', 'getProfilePage')
+        new Route('/profile/', 'profile', 'getProfilePage'),
+        new Route('/profile/newimg/', 'profile', 'saveNewAvatar')
     ];
     

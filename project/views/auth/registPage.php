@@ -10,7 +10,7 @@
         </div>
         <div class="mb-3">
             <label for="avatar" class="form-label">Изображение профиля</label>
-            <input type="file" accept="image/png, image/gif, image/jpeg" class="form-control" id="avatar" name="avatar" placeholder="Введите пароль">
+            <input type="file" accept="image/png, image/gif, image/jpeg" class="form-control" id="avatar" name="avatar">
         </div>
         <div class="mb-3">
             <label for="InputPassword1" class="form-label">Пароль</label>

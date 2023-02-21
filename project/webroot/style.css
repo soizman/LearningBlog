@@ -152,6 +152,7 @@ footer {
     width: 40%;
     text-align: left;
     padding: 0;
+    vertical-align: top;
 }
 
 .avatarProfile {
@@ -172,6 +173,7 @@ footer {
     font-size: 28px;
     font-weight: inherit;
 }
+
     
 /*конец блока профиля*/
 /*Блок формы статей*/
